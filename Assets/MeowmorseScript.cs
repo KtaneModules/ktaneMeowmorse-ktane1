@@ -33,7 +33,7 @@ public class MeowmorseScript : MonoBehaviour {
     private float initTime;
 
     private int buttonPresses, validPresses;
-    public float timeBetweenPresses;
+    private float timeBetweenPresses;
 
     static int moduleIdCounter = 1;
     int moduleId;
@@ -256,11 +256,12 @@ public class MeowmorseScript : MonoBehaviour {
             case "Nyan":
                 meowPitch = 2 + Bomb.GetSolvedModuleNames().Count() + 1;
                 meowPitch %= 3;
-                string temp = initSol;
                 if (Bomb.IsIndicatorOn(Indicator.CAR) && Bomb.IsIndicatorOn(Indicator.TRN))
-                    temp = "nyan";
+                    initSol = "nyan";
+                string temp = "";
                 for (int i = 0; i < (Bomb.GetSolvableModuleNames().Count() - Bomb.GetSolvedModuleNames().Count()) % 10 + 1; i++)
-                    initSol += temp;
+                    temp += initSol;
+                initSol = temp;
                 break;
             default:
                 break;
@@ -438,6 +439,7 @@ public class MeowmorseScript : MonoBehaviour {
                 Module.HandleStrike();
                 Audio.PlaySoundAtTransform("huh", transform);
                 currentInput = null;
+                maxRule = false;
                 GenerateSong();
                 GenerateSolution(true);
             }
@@ -612,7 +614,8 @@ public class MeowmorseScript : MonoBehaviour {
         }
         Module.HandlePass();
         catPosition.sprite = hatocat;
-        spritePosition.localScale = new Vector3(0.75f, 0.75f, 0.75f);
+        spritePosition.localPosition = new Vector3(0f, -0.01f, -0.002f);
+        spritePosition.localScale = new Vector3(0.65f, 0.65f, 0.65f);
         for (int i = 0; i < allMeshes.Length; i++)
         {
             StartCoroutine(Rainbow(i));

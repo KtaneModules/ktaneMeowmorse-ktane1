@@ -23,7 +23,7 @@ MonoBehaviour:
 
     Module ID: meowmorse
 
-    Manual Link: TBA'
-  version: 1.0
+    Manual Link: https://ktane.timwi.de/HTML/Meowmorse.html'
+  version: 1.0.2
   outputFolder: build
   previewImage: {fileID: 2800000, guid: e32648bcb3133b44b86fa1339df1be16, type: 3}
