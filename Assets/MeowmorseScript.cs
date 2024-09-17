@@ -647,7 +647,7 @@ public class MeowmorseScript : MonoBehaviour {
         }
     }
 #pragma warning disable 414
-    private readonly string TwitchHelpMessage = @"<!{0} press button> to press the top right button, <!{0} press up> or <!{0} press down> to cycle the display up or down respectively, <!{0} set low/middle/high> to set the display on a specific tone, <!{0} press left> or <!{0} press right> to press the left or right ear buttons respectively, <!{0} send .--> to send a message with short and long presses using the hex button (you could only send one letter at a time), <!{0} clear> to hold the top right button for clearing input, <!{0} mash> to mash the top right button";
+    private readonly string TwitchHelpMessage = @"<!{0} press button> to press the top right button, <!{0} press up> or <!{0} press down> to cycle the display up or down respectively, <!{0} set low/middle/high> to set the display on a specific tone, <!{0} press display> to press the tone display, <!{0} press left> or <!{0} press right> to press the left or right ear buttons respectively, <!{0} send .--> to send a message with short and long presses using the hex button (you could only send one letter at a time), <!{0} clear> to hold the top right button for clearing input, <!{0} mash> to mash the top right button";
     #pragma warning restore 414
     
     IEnumerator ProcessTwitchCommand (string command)
@@ -675,6 +675,11 @@ public class MeowmorseScript : MonoBehaviour {
                         topRightButton.OnInteract();
                         yield return null;
                         topRightButton.OnInteractEnded();
+                        yield return null;
+                        break;
+
+                    case "display":
+                        display.OnInteract();
                         yield return null;
                         break;
 
